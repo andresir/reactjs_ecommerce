@@ -1,0 +1,5 @@
+export const ADMIN_LOGIN_SUCCESS = 'ADMIN_LOGIN_SUCCESS';
+export const AUTH_SYSTEM_ERROR = 'LOGIN_SYSTEM_ERROR';
+export const AUTH_LOADING = 'AUTH_LOADING';
+export const LOGOUT = 'LOGOUT';
+export const COOKIE_CHECKED = 'COOKIE_CHECKED';
