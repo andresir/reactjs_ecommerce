@@ -3,33 +3,22 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 // import { select_produk } from '../actions';
-import { select_produk, tambahCart } from '../actions'
+import { select_produk } from '../actions'
 
 class ProdukDetail extends Component {
 
-    ////cara params ---> http://localhost:3000/produkdetail/2
-    // componentDidMount(){
-    //     //untuk mendapatkan link / akses ke id / buat GET id
-    //     var produkId = this.props.match.params.id;
-    //     axios.get(`http://localhost:1997/produk/${produkId}`)
-    //     .then((res) => {
-    //         this.props.select_produk(res.data)
-    //         // console.log(res)
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }
+    
+    state = { listCart: [] }
 
-
-    //cara query-string ---> http://localhost:3000/produkdetail?produkid=2&namaproduk=bronson
+    //cara query-string ---> http://localhost:3000/popokdetail?popokid=2&namapopok=bronson
+    // cdidmount ini digunakan agar setelah render page detail produk biar gak ilang
     componentDidMount(){
         //untuk mendapatkan link / akses ke id / buat GET id
-        // var produkId = this.props.match.params.id;
+        // var popokId = this.props.match.params.id;
 
         var params = queryString.parse(this.props.location.search);
-        var produkId = params.produkid;
-        // console.log(params)
-        axios.get(`http://localhost:1997/popok/${produkId}`)
+        var popokId = params.produkid;
+        axios.get(`http://localhost:1997/popok/${popokId}`)
         .then((res) => {
             this.props.select_produk(res.data)
             // console.log(res)
@@ -38,29 +27,38 @@ class ProdukDetail extends Component {
         })
     }
 
-
     onToCart = () => {
        
-
-
+        var params = queryString.parse(this.props.location.search);
+        var popokId = params.produkid;
+        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+        console.log(params)
         // var nama = this.refs.namaAdd.value;
         // var merk = this.refs.merkAdd.value;
         var jumlahBeli = this.refs.jumlahBeli.value;
         // var img = this.refs.imgAdd.value;
         // var description = this.refs.descAdd.value;
         
-        var { nama, harga, img, description, merk } = this.props.produk;
-        axios.post('http://localhost:1997/orders' , {
+        var { nama, harga, img, merk } = this.props.produk;
+        axios.post('http://localhost:1997/orders', {
 
-          username : this.props.username,
-          qty: jumlahBeli,
-          totalHarga: jumlahBeli * harga
+            username : this.props.username,
+            produkId: popokId, 
+            nama, 
+            harga,
+            img, 
+            merk,
+            qty: jumlahBeli,
+            totalHarga: harga*jumlahBeli,
+            date: new Date()
         
         }).then((res) => {
+            this.setState({ listCart: res.data })
+            console.log(this.state.listCart)
             (window.alert('Produk berhasil dimasukan ke Keranjang'))
-          console.log(res)
           
-          this.props.tambahCart() 
+          
+       
         }).catch((err) => {
           console.log(err)
         })
@@ -176,7 +174,8 @@ class ProdukDetail extends Component {
                                 </div>
                                 <div className="col-sm-4">
                                 {/* <input type="button" className="btn-danger" value='Add' onClick={this.onToCart}/> */}
-                                <button className="btn btn-danger btn-red btn-sm" onClick={this.onToCart}><span className="addchart">Add To Chart</span></button>
+                                {/* <button className="btn btn-danger btn-red btn-sm" onClick={this.onToCart}><span className="addchart">Add To Chart</span></button> */}
+                                <input className="btn btn-danger btn-red btn-sm" onClick={this.onToCart} type="button" value="Add To Cart" />
                                 </div>
                                 <div className="clearfix" />
                             </div>
@@ -218,4 +217,4 @@ const mapStateToProps = (state) => {
     return { produk: state.selectedProduk, username: state.auth.username }
 }
 
-export default connect(mapStateToProps, { select_produk, tambahCart })(ProdukDetail);
+export default connect(mapStateToProps, { select_produk })(ProdukDetail);
