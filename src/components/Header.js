@@ -63,7 +63,7 @@ class Header extends Component {
                           <Link to="/login"><NavLink className="btn btn-dark">|| Login User</NavLink></Link>
                           <Link to="/admin"><NavLink className="btn btn-dark">|| Login Admin</NavLink></Link>
                             {/* <a href="#" id="reg" className="btn btn-dark">|| Login</a> */}
-                           
+                            
                             {/* Search */}
                             <div className="srch-wrap">
                               <a href="#" id="srch" className="btn btn-default btn-search"><i className="fa fa-search" /></a>
@@ -130,8 +130,8 @@ class Header extends Component {
                         {/* Keranjang Belanja (CART) */}
                         <div className="col-md-2 machart">
                           <button id="popcart" className="btn btn-default btn-chart btn-sm "><span className="mychart">Cart</span>|<span className="allprice">$0.00</span></button>
-                          
                         </div>
+
                       </div>
                     </div>
                   </div>
@@ -156,7 +156,6 @@ class Header extends Component {
                       <div className="top">
                       
                       <Link to="/"><button className="btn btn-danger" onClick={this.onLogOutSelect}>USER LOGOUT</button></Link>
-                     
                         <div className="srch-wrap">
                           <a href="#" id="srch" className="btn btn-default btn-search"><i className="fa fa-search" /></a>
                         </div>
@@ -239,53 +238,8 @@ class Header extends Component {
                     {/* Keranjang Belanja (CART) */}
                     <div className="col-md-2 machart">
                       <button id="popcart" className="btn btn-default btn-chart btn-sm "><span className="mychart">Cart</span>|<span className="allprice">$0.00</span></button>
-                      <div className="popcart">
-                        <table className="table table-condensed popcart-inner">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                              </td>
-                              <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                              <td>1X</td>
-                              <td>$138.80</td>
-                              <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                              </td>
-                              <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                              <td>1X</td>
-                              <td>$138.80</td>
-                              <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                              </td>
-                              <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                              <td>1X</td>
-                              <td>$138.80</td>
-                              <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <span className="sub-tot">Sub-Total : <span>$277.60</span> | <span>Vat (17.5%)</span> : $36.00 </span>
-                        <br />
-                        <div className="btn-popcart">
-                          <a href="checkout.html" className="btn btn-default btn-red btn-sm">Checkout</a>
-                          <a href="cart.html" className="btn btn-default btn-red btn-sm">More</a>
-                        </div>
-                        <div className="popcart-tot">
-                          <p>
-                            Total<br />
-                            <span>$313.60</span>
-                          </p>
-                        </div>
-                        <div className="clearfix" />
-                      </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -310,7 +264,6 @@ class Header extends Component {
                         <div className="top">
                         
                         <Link to="/"><button className="btn btn-danger" onClick={this.onLogOutSelect}>ADMIN LOGOUT</button></Link>
-                       
                           <div className="srch-wrap">
                             <a href="#" id="srch" className="btn btn-default btn-search"><i className="fa fa-search" /></a>
                           </div>
@@ -360,15 +313,10 @@ class Header extends Component {
                         </div>
                       </div>
   
-                      {/* Keranjang Belanja (CART) */}
                       <div className="col-md-2 machart">
                         <button className="btn btn-default btn-chart btn-sm "><span className="myacc">Admin Area</span></button>
-                        
-                          <div className="clearfix" />
-                      
+                        <div className="clearfix" />
                       </div>
-
-
 
                     </div>
                   </div>
