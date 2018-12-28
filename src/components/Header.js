@@ -63,52 +63,12 @@ class Header extends Component {
                           <Link to="/login"><NavLink className="btn btn-dark">|| Login User</NavLink></Link>
                           <Link to="/admin"><NavLink className="btn btn-dark">|| Login Admin</NavLink></Link>
                             {/* <a href="#" id="reg" className="btn btn-dark">|| Login</a> */}
-                            <div className="regwrap">
-                              <div className="row">
-                                <div className="col-md-6 regform">
-                                  <div className="title-widget-bg">
-                                    <div className="title-widget">Login</div>
-                                  </div>
-                                  <form role="form">
-                                    <div className="form-group">
-                                      <input type="text" className="form-control" id="username" placeholder="Username" />
-                                    </div>
-                                    <div className="form-group">
-                                      <input type="password" className="form-control" id="password" placeholder="password" />
-                                    </div>
-                                    <div className="form-group">
-                                      <button className="btn btn-default btn-red btn-sm">Sign In</button>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div className="col-md-6">
-                                  <div className="title-widget-bg">
-                                    <div className="title-widget">Register</div>
-                                  </div>
-                                  <p>
-                                    New User? By creating an account you be able to shop faster, be up to date on an order's status...
-                                  </p>
-                                  <button className="btn btn-default btn-yellow">Register Now</button>
-                                </div>
-                              </div>
-                            </div>
+                           
+                            {/* Search */}
                             <div className="srch-wrap">
                               <a href="#" id="srch" className="btn btn-default btn-search"><i className="fa fa-search" /></a>
                             </div>
-                            <div className="srchwrap">
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <form className="form-horizontal" role="form">
-                                    <div className="form-group">
-                                      <label htmlFor="search" className="col-sm-2 control-label">Search</label>
-                                      <div className="col-sm-10">
-                                        <input type="text" className="form-control" id="search" />
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
@@ -170,52 +130,7 @@ class Header extends Component {
                         {/* Keranjang Belanja (CART) */}
                         <div className="col-md-2 machart">
                           <button id="popcart" className="btn btn-default btn-chart btn-sm "><span className="mychart">Cart</span>|<span className="allprice">$0.00</span></button>
-                          <div className="popcart">
-                            <table className="table table-condensed popcart-inner">
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                                  </td>
-                                  <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                                  <td>1X</td>
-                                  <td>$138.80</td>
-                                  <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                                  </td>
-                                  <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                                  <td>1X</td>
-                                  <td>$138.80</td>
-                                  <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <a href="product.html"><img src="images/dummy-1.png" alt className="img-responsive" /></a>
-                                  </td>
-                                  <td><a href="product.html">Casio Exilim Zoom</a><br /><span>Color: green</span></td>
-                                  <td>1X</td>
-                                  <td>$138.80</td>
-                                  <td><a href="#"><i className="fa fa-times-circle fa-2x" /></a></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <span className="sub-tot">Sub-Total : <span>$277.60</span> | <span>Vat (17.5%)</span> : $36.00 </span>
-                            <br />
-                            <div className="btn-popcart">
-                              <a href="checkout.html" className="btn btn-default btn-red btn-sm">Checkout</a>
-                              <a href="cart.html" className="btn btn-default btn-red btn-sm">More</a>
-                            </div>
-                            <div className="popcart-tot">
-                              <p>
-                                Total<br />
-                                <span>$313.60</span>
-                              </p>
-                            </div>
-                            <div className="clearfix" />
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
