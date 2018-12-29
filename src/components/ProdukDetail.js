@@ -27,7 +27,7 @@ class ProdukDetail extends Component {
         })
 
         this.getCartList();
-        
+        this.props.item_cart(this.props.username);
     }
 
 
@@ -72,8 +72,7 @@ class ProdukDetail extends Component {
         console.log('xxxxxxxxxxxxxxxxxxxxxxx')
         console.log(this.props.isiCart)
         return(
-            this.props.isiCart
-            
+            this.props.isiCart.length
         )
     }
     
@@ -85,13 +84,13 @@ class ProdukDetail extends Component {
         return(
             <div>
                 <div className="container">
-                <ul className="small-menu">{/*small-nav */}
-                    <li><a href="#" className="myacc">My Account</a></li>
-                    <li><a href="#" className="myshop">Shopping Chart</a></li>
-                    <li><a href="#" className="mycheck">Checkout</a></li>
-                </ul>{/*small-nav */}
-                <div className="clearfix" />
-                <div className="lines" />
+                    <ul className="small-menu">{/*small-nav */}
+                        <li><a href="#" className="myacc">My Account</a></li>
+                        <li><a href="#" className="myshop">Shopping Chart</a></li>
+                        <li><a href="#" className="mycheck">Checkout</a></li>
+                    </ul>{/*small-nav */}
+                    <div className="clearfix" />
+                    <div className="lines" />
                 </div>
                 <div className="container">
                 <div className="row">
@@ -221,7 +220,7 @@ class ProdukDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { produk: state.selectedProduk, username: state.auth.username, isiCart: state.authItemCart.username }
+    return { produk: state.selectedProduk, username: state.auth.username, isiCart: state.authItemCart }
 }
 
 export default connect(mapStateToProps, { select_produk, item_cart })(ProdukDetail);
