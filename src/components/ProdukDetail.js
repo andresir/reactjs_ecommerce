@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { API_URL_1 } from '../supports/api-url/apiurl';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
-// import { select_produk } from '../actions';
-import { select_produk } from '../actions'
+import { select_produk } from '../actions';
+import { item_cart } from '../actionsCart';
 
 class ProdukDetail extends Component {
 
-    
     state = { listCart: [] }
 
     //cara query-string ---> http://localhost:3000/popokdetail?popokid=2&namapopok=bronson
@@ -18,56 +18,70 @@ class ProdukDetail extends Component {
 
         var params = queryString.parse(this.props.location.search);
         var popokId = params.produkid;
-        axios.get(`http://localhost:1997/popok/${popokId}`)
+        axios.get(`${API_URL_1}/popok/${popokId}`)
         .then((res) => {
             this.props.select_produk(res.data)
             // console.log(res)
         }).catch((err) => {
             console.log(err)
         })
+
+        this.getCartList();
+        
+    }
+
+
+    //untuk menampilkan keranjang belanja berdasarkan username
+    getCartList = () => {
+        axios.get(API_URL_1 + '/orders', {
+            params: {
+                username: this.props.username
+            }
+        }).then((res) => {
+            this.setState({ listCart: res.data })
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     onToCart = () => {
-       
         var params = queryString.parse(this.props.location.search);
         var popokId = params.produkid;
-        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
-        console.log(params)
-        // var nama = this.refs.namaAdd.value;
-        // var merk = this.refs.merkAdd.value;
-        var jumlahBeli = this.refs.jumlahBeli.value;
-        // var img = this.refs.imgAdd.value;
-        // var description = this.refs.descAdd.value;
+
+        var jumlahBeli = parseInt(this.refs.jumlahBeli.value);
         
         var { nama, harga, img, merk } = this.props.produk;
-        axios.post('http://localhost:1997/orders', {
+        axios.post(API_URL_1 + '/orders', {
 
-            username : this.props.username,
-            produkId: popokId, 
-            nama, 
-            harga,
-            img, 
-            merk,
-            qty: jumlahBeli,
-            totalHarga: harga*jumlahBeli,
+            username : this.props.username, produkId: popokId, nama, harga, img, merk, qty: jumlahBeli, totalHarga: harga*jumlahBeli,
             date: new Date()
         
         }).then((res) => {
-            this.setState({ listCart: res.data })
-            console.log(this.state.listCart)
+            // this.setState({ listCart: res.data })
+            this.getCartList();
+            this.props.item_cart(this.props.username);
+
             (window.alert('Produk berhasil dimasukan ke Keranjang'))
-          
-          
-       
+
         }).catch((err) => {
-          console.log(err)
+            console.log(err)
         })
-        }
+    }
+
+    renderTotalCart = () => {
+        console.log('xxxxxxxxxxxxxxxxxxxxxxx')
+        console.log(this.props.isiCart)
+        return(
+            this.props.isiCart
+            
+        )
+    }
     
 
     render() {
         
         var { nama, harga, img, description, merk } = this.props.produk;
+        // var { namaNya } = this.props.isiCart;
         return(
             <div>
                 <div className="container">
@@ -104,11 +118,10 @@ class ProdukDetail extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-6">
-                        <div className="dt-img">
-                            <div className="detpricetag"><div className="inner">{harga}</div></div>
-                            <a className="fancybox" href={img} data-fancybox-group="gallery" title={merk}><img src={img} alt className="img-responsive" /></a>
-                        </div>
-                   
+                            <div className="dt-img">
+                                <div className="detpricetag"><div className="inner">{harga}</div></div>
+                                <a className="fancybox" href={img} data-fancybox-group="gallery" title={merk}><img src={img} alt className="img-responsive" /></a>
+                            </div>
                         </div>
                         <div className="col-md-6 det-desc">
                         <div className="productdata">
@@ -134,7 +147,6 @@ class ProdukDetail extends Component {
                                 <div className="col-sm-10">
                                 <select className="form-control" id="mem">
                                     <option>Blank 1</option>
-                                   
                                 </select>
                                 </div>
                                 <div className="clearfix" />
@@ -159,17 +171,13 @@ class ProdukDetail extends Component {
 
                                 {/* <input ref="jumlahBeli" type="number" placeholder="Harga Produk" /> */}
                                 
-                                <select ref="jumlahBeli">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select> 
-
-               
-                  
-
+                                    <select ref="jumlahBeli">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select> 
 
                                 </div>
                                 <div className="col-sm-4">
@@ -187,7 +195,7 @@ class ProdukDetail extends Component {
                                 </div>
                                 <div className="clearfix" />
                             </div>
-                            <div className="avatock"><span>{this.props.hargaNya}</span></div>
+                            <div className="avatock"><span>{this.state.listCart.length} // {this.renderTotalCart()}</span></div>
                             </div>
                         </div>
                         </div>
@@ -195,12 +203,11 @@ class ProdukDetail extends Component {
                     <div className="tab-review">
                         <ul id="myTab" className="nav nav-tabs shop-tab">
                         <li className="active"><a href="#desc" data-toggle="tab">Description</a></li>
-               
                         </ul>
                         <div id="myTabContent" className="tab-content shop-tab-ct">
                         <div className="tab-pane fade active in" id="desc">
                             <p>
-                            {description}
+                                {description}
                             </p>
                         </div>
                         
@@ -214,7 +221,7 @@ class ProdukDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { produk: state.selectedProduk, username: state.auth.username }
+    return { produk: state.selectedProduk, username: state.auth.username, isiCart: state.authItemCart.username }
 }
 
-export default connect(mapStateToProps, { select_produk })(ProdukDetail);
+export default connect(mapStateToProps, { select_produk, item_cart })(ProdukDetail);
