@@ -70,7 +70,7 @@ class Cart extends Component {
     }
 
     //TES KUPON DISKON --------------------------------------------------------------------------------
-    //Diskon
+    //tes Diskon
     renderDiskon = () => {
         var inputDiskon = this.refs.diskon.value;
         var total = 0;
