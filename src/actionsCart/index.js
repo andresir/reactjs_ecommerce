@@ -10,7 +10,6 @@ export const item_cart = (username) => {
                 username
             }
         }).then((res) => {
-            console.log('INI BARUUUUUUUUUUUUUUUUUUUU')
             // console.log(res.data[0].username)
             dispatch({ type : ITEM_CART, payload: res.data })
         })
