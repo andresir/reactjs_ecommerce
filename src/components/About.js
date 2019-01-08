@@ -9,7 +9,7 @@ class About extends Component {
                     <div class="title-bg">
                         <div className="title">About me</div>
                     </div>
-                    <h1>Kami adalah anak gembala yang selalu riang...</h1>
+                    <h1>Kami selalu riang gembira...</h1>
                 </div>
             </div>
         )
