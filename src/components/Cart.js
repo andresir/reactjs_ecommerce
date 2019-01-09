@@ -61,7 +61,7 @@ class Cart extends Component {
     //Total Bayar
     totalPrice = () => {
         var cost = 0;
-        var totalJumlah = this.props.isiCart.map(({ totalHarga }) => {
+        this.props.isiCart.map(({ totalHarga }) => {
             return (
                 cost += totalHarga
             )
@@ -138,7 +138,7 @@ class Cart extends Component {
                         <td><form><input ref="qtySAVE" type="text" className="form-control quantity" defaultValue={e.qty} /></form></td>
                         <td>{e.totalHarga}</td>
                         <td><input className="btn btn-warning btn-blue btn-sm" type="button" value="Save" onClick={() => this.onBtnSave(e.id)} /></td>
-                        <td><input className="btn btn-primary btn-sm" type="button" value="Cancel" onClick={this.onBtnCancel}/></td>
+                        <td><input className="btn btn-success btn-sm" type="button" value="Cancel" onClick={this.onBtnCancel}/></td>
                     </tr>
                 )
             }else{
